@@ -54,6 +54,7 @@
     <Compile Include="Infrastructure\IoCInstaller.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EnumerationType.cs" />
     <Compile Include="Services\GenericExtensibleEnum.cs" />
     <Compile Include="Services\MetricTypeProviders.cs" />
     <Compile Include="Services\MetricTypeEnum.cs" />

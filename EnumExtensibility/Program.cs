@@ -24,6 +24,8 @@ namespace EnumExtensibility
             var controller1 = container.Resolve<Controller1>();
             controller1.Get(new MetricCellTypeRequest { Type = "Text" });
 
+            var controller2 = new Controller2(new MyMetricTypeEnumeration());
+            controller2.Get(new MetricCellTypeRequest { Type = "Other" });
 
             // Wait for a key press before exit.
             Console.WriteLine("Press Any Key to close");
@@ -85,6 +87,22 @@ namespace EnumExtensibility
             // Simple code that is extensible.
             var model = metricCellTypes.Single(x => x.CanHandle(request)).GetView();
             Console.WriteLine("Controller 1: " + model);
+        }
+    }
+
+    public class Controller2
+    {
+        private readonly IMyMetricTypeEnumerationType metricTypeEnumType;
+
+        public Controller2(IMyMetricTypeEnumerationType metricTypeParam)
+        {
+            this.metricTypeEnumType = metricTypeParam;
+        }
+
+        public void Get(MetricCellTypeRequest request)
+        {
+            var model = metricTypeEnumType.GetValueForConstant(request.Type);
+            Console.WriteLine("Controller 2: " + model);
         }
     }
 }
